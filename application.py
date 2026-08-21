@@ -1,8 +1,16 @@
+import os
+from flask_cors import CORS
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 app = Flask (__name__)
+CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+    'DATABASE_URL',
+    'sqlite:///data.db'
+)
+
 db = SQLAlchemy(app)
 
 class Drink (db.Model):
@@ -13,6 +21,8 @@ class Drink (db.Model):
     def __repr__(self):
         return f"{self.name} - {self.description}"
 
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():

@@ -101,7 +101,7 @@ This endpoint returns a JSON containing all drinks in the database.
 }
 ```
 
-   - GET /drinks/<id\>
+   - GET /drinks/{id}
    
 This endpoint request returns a JSON object containing information about the drink associated with the specified ID. For example, an ID of 1 returns information about the 'Apple' drink.
 
@@ -137,7 +137,7 @@ This endpoint request allows you to add a drink name and description to the data
 ```
 The **id** is the ID assigned to the newly created drink
 
-   - PATCH /drinks/<id\>
+   - PATCH /drinks/{id}
 
 This endpoint request allows you to modify part of the drink information in the database, in this case the 'name' or 'description'.
 
@@ -163,7 +163,7 @@ OR
 }
 ```
 
-   - PUT /drinks/<id\>
+   - PUT /drinks/{id}
 
 This endpoint request allows you to replace or update every information related to a specific drink id. 
 
@@ -183,7 +183,7 @@ This endpoint request allows you to replace or update every information related 
 }
 ```
 
-   - DELETE /drinks/<id\>
+   - DELETE /drinks/{id}
 
 This endpoint request allows you to delete one drink at a time from the database. 
 
