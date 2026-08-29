@@ -18,3 +18,7 @@ resource "aws_instance" "drinks_api" {
     Name = "drinks-api-server"
   }
 }
+
+resource "aws_ecr_repository" "drinks_api" {
+  name = "drinks-api"
+}

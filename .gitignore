@@ -5,3 +5,5 @@ instance/
 .env
 *.pem
 .terraform/
+*.tfstate
+*.tfstate.*
