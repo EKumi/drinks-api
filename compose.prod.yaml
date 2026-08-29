@@ -1,0 +1,28 @@
+services:
+  api:
+    image: 459936081779.dkr.ecr.eu-north-1.amazonaws.com/drinks-api:latest
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql+psycopg://drinks:drinks@db:5432/drinks
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: drinks
+      POSTGRES_PASSWORD: drinks
+      POSTGRES_DB: drinks
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:
